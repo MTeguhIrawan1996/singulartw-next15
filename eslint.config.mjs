@@ -12,7 +12,12 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
-    extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
+    extends: [
+      'next/core-web-vitals',
+      'next/typescript',
+      'prettier',
+      'plugin:tailwindcss/recommended',
+    ],
     rules: {
       'no-unused-vars': ['error'],
       'no-console': ['error'],
