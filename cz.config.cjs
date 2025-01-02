@@ -24,7 +24,6 @@ module.exports = {
       name: 'chore:\tChanges to the build process or auxiliary tools\n\t\tand libraries such as documentation generation',
     },
     { value: 'revert', name: 'revert:\tRevert to a commit' },
-    { value: 'wip', name: 'wip:\tWork in progress' },
     {
       value: 'build',
       name: 'build:\tAdd or update regards to build process',
