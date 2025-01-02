@@ -83,6 +83,9 @@ const eslintConfig = [
       //#endregion  //*======== Import Sort ===========
     },
   }),
+  {
+    ignores: ['.next/*'],
+  },
 ];
 
 export default eslintConfig;
