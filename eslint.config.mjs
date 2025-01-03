@@ -1,4 +1,6 @@
+import { includeIgnoreFile } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
+import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -9,10 +11,16 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+const gitignorePath = path.resolve(__dirname, '.gitignore');
+
 const eslintConfig = [
+  includeIgnoreFile(gitignorePath),
   ...compat.config({
     plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
     extends: [
+      'next',
+      'plugin:@typescript-eslint/strict',
+      'plugin:@typescript-eslint/stylistic',
       'next/core-web-vitals',
       'next/typescript',
       'prettier',
@@ -83,9 +91,6 @@ const eslintConfig = [
       //#endregion  //*======== Import Sort ===========
     },
   }),
-  {
-    ignores: ['.next/*'],
-  },
 ];
 
 export default eslintConfig;
