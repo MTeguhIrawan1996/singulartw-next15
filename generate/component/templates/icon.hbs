@@ -1,0 +1,20 @@
+type Props = {
+  className?: string
+  color?: string
+}
+
+export default function {{pascalCase name}}(props: Props) {
+  const { className = '', color = '#000' } = props
+
+  return (
+    <svg
+      className={className}
+      color={color}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {{!-- Add svg here --}}
+    </svg>
+  )
+}

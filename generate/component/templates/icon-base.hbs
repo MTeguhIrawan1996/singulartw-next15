@@ -1,0 +1,43 @@
+import { twMerge } from 'tailwind-merge'
+{{#each icons}}
+import {{this}} from './{{this}}'
+{{/each}}
+
+type SizeVariant = 'small' | 'large' | 'x-large'
+type MappedSizeVariant = { [key in SizeVariant]: string }
+
+type IconsName =
+  {{#each baseNames}}
+  | '{{this}}'
+  {{/each}}
+
+const ICON_SIZES: MappedSizeVariant & { 'x-small': string } = {
+  'x-small': 'h-4 w-4',
+  small: 'h-5 w-5',
+  large: 'h-6 w-6',
+  'x-large': 'h-7 w-7',
+}
+
+interface IIconProps {
+  name: IconsName
+  className?: string
+  size?: SizeVariant | 'x-small'
+  width?: number
+  height?: number
+  color?: string
+}
+
+export default function Icons(props: IIconProps) {
+  const { name, className, size = 'small' } = props
+
+  const classNames = twMerge(ICON_SIZES[size], className, 'shrink-0 grow-0')
+
+  switch (name) {
+     {{#each baseNames}}
+      case '{{this}}':
+        return <{{lookup ../icons @index}} className={classNames} />;
+      {{/each}}
+    default:
+      throw new Error('Invalid icon name')
+  }
+}

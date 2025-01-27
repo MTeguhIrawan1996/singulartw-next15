@@ -1,36 +1,267 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + TailwindCss + TypeScript Starter and Boilerplate
 
-## Getting Started
+<div align="center">
+  <h2>🔋 ts-nextjs-tailwindcss-starter</h2>
+  <p>Next.js 15+, Tailwind Css, TypeScript starter packed with useful development features.</p>
+  <p>Made by <a href="https://www.onedev.my.id/">OneDev</a></p>
+</div>
 
-First, run the development server:
+### Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Developer experience first, extremely flexible code structure and only keep what you need:
+
+- ⚡ [Next.js](https://nextjs.org) with App Router support
+- 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
+- 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
+- ✅ Strict Mode for TypeScript and React 19
+- ♻️ Type-safe environment variables with T3 Env
+- ⌨️ Form handling with React Hook Form
+- ⭐ State Management : Zustand
+- ❤️ API Services with [Tenstack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+- 🔴 Validation library with Zod
+- ⏲️ Date config with [Dayjs](https://day.js.org/en/)
+- 📏 Linter with [ESLint](https://eslint.org) (default Next.js, Next.js Core Web Vitals, Tailwind CSS and Airbnb configuration)
+- 💖 Code Formatter with [Prettier](https://prettier.io)
+- 🦊 Husky for Git Hooks
+- 🚫 Lint-staged for running linters on Git staged files
+- 🚓 Lint git commit with Commitlint
+- 📓 Write standard compliant commit messages with Commitizen
+- 💡 Absolute Imports using `@` prefix
+- 🗂 VSCode configuration: Settings
+- 🤖 SEO metadata, Open Graph tags
+- 🗺️ Sitemap.xml and robots.txt
+- ⚙️ [Bundler Analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
+- 💯 Maximize lighthouse score
+
+Built-in feature from Next.js:
+
+- ☕ Minify HTML & CSS
+- 💨 Live reload
+- ✅ Cache busting
+
+### Requirements
+
+- Node.js 20+ and npm
+
+### Getting started
+
+Run the following command on your local environment:
+
+```shell
+git clone --depth=1 https://github.com/MTeguhIrawan1996/singulartw.git my-project-name
+cd my-project-name
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, you can run the project locally in development mode with live reload by executing:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000 with your favorite browser to see your project.
 
-## Learn More
+### Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```shell
+📦src
+.
+├── .husky
+├── .vscode
+|   └── setting.json
+|
+├── node_modules
+├── public
+|   ├── fonts
+|   └── icons
+|
+├── src
+|   ├── app
+|   |   ├── (auth) // Grouping routing
+|   |   |   ├── dashboard
+|   |   |   |   └── page.tsx
+|   |   |   ├── account
+|   |   |   |   └── page.tsx
+|   |   |   ├── login
+|   |   |   |   └── page.tsx
+|   |   |   ├── register
+|   |   |   |   └── page.tsx
+|   |   |   |
+|   |   |   ├── error.tsx
+|   |   |   └── layout.tsx
+|   |   |
+|   |   ├── contact
+|   |   |   └── page.tsx
+|   |   |
+|   |   ├── not-found.tsx
+|   |   ├── global-error.tsx
+|   |   └── layout.tsx // General Provider
+|   |
+|   ├── pages
+|   |   ├── account
+|   |   |   ├── dashboard
+|   |   |   |   └── index.tsx
+|   |   |   ├── transaction
+|   |   |   |   └── index.tsx
+|   |   |   └── address
+|   |   |       └── index.tsx
+|   |   |
+|   |   ├── product
+|   |   |   └── index.tsx
+|   |   └── contact
+|   |       └── index.tsx
+|   |
+|   ├── components
+|   |   ├── elements
+|   |   |   ├── accordion
+|   |   |   |   ├── Accordion.tsx
+|   |   |   |   └── index.ts
+|   |   |   ├── badge
+|   |   |   |   ├── Badge.tsx
+|   |   |   |   └── index.ts
+|   |   |   ├── button
+|   |   |   |   ├── Button.tsx
+|   |   |   |   └── index.ts
+|   |   |   └── index.ts
+|   |   |
+|   |   ├── icons // optional
+|   |   |   ├── AccountIcon.tsx
+|   |   |   └── index.ts
+|   |   |
+|   |   ├── layouts
+|   |   |   ├── common // optional
+|   |   |   |   ├── RootLayout.tsx
+|   |   |   |   └── index.ts
+|   |   |   ├── dashboard
+|   |   |   |    ├── LayoutDashboard.tsx
+|   |   |   |    └── index.ts
+|   |   |   └── index.ts
+|   |   |
+|   |   └── shared
+|   |      └── ribbon-banner
+|   |      |    ├── RibbonBanner.tsx
+|   |      |    └── index.ts
+|   |      └── index.ts
+|   |
+|   ├── features
+|   |   ├── product
+|   |   |   ├── section
+|   |   |   |    ├── ProductTitle.tsx
+|   |   |   |    ├── ProductContent.tsx
+|   |   |   |    └── index.ts
+|   |   |   ├── components
+|   |   |   |    ├── InputCustom.tsx
+|   |   |   |    ├── ButtonCustom.tsx
+|   |   |   |    └── index.ts
+|   |   |   ├── actions.ts
+|   |   |   ├── validations.ts
+|   |   |   ├── type.ts
+|   |   |   ├── constant.ts
+|   |   |   └── feature.tsx // wrapping all section
+|   |   |
+|   |   └── product-category
+|   |       ├── section
+|   |       |    ├── ProductCategoryTitle.tsx
+|   |       |    ├── ProductCategoryContent.tsx
+|   |       |    └── index.ts
+|   |       ├── components
+|   |       |    ├── InputCustom.tsx
+|   |       |    ├── ButtonCustom.tsx
+|   |       |    └── index.ts
+|   |       ├── actions.ts
+|   |       ├── validations.ts
+|   |       ├── type.ts
+|   |       ├── constant.ts
+|   |       └── feature.tsx
+|   |
+|   ├── services
+|   |   ├── product
+|   |   |   ├── queries
+|   |   |   |   ├── getProducts.ts
+|   |   |   |   ├── getProductDetail.ts
+|   |   |   |   └── index.ts
+|   |   |   ├── mutations
+|   |   |   |   ├── deleteProduct.ts
+|   |   |   |   ├── createProducts.ts
+|   |   |   |   └── index.ts
+|   |   |   ├── index.ts
+|   |   |   ├── keys.ts
+|   |   |   └── instances.ts
+|   |   |
+|   |   ├── product-category
+|   |   |   ├── queries
+|   |   |   |   ├── getProductCategories.ts
+|   |   |   |   ├── getProductCatetoryDetail.ts
+|   |   |   |   └── index.ts
+|   |   |   ├── mutations
+|   |   |   |   ├── deleteProductCategory.ts
+|   |   |   |   ├── createProductCategory.ts
+|   |   |   |   └── index.ts
+|   |   |   ├── index.ts
+|   |   |   ├── keys.ts
+|   |   |   └── instances.ts
+|   |   |
+|   |   └── axiosConfig.ts
+|   |
+|   ├── providers
+|   |   ├── ReactQueryProvider.tsx
+|   |   ├── NextAuthProvider.tsx
+|   |   └── index.ts
+|   |
+|   ├── hooks
+|   |   ├── useDebounce.ts
+|   |   ├── useIsMobile.ts
+|   |   └── index.ts
+|   |
+|   ├── utils
+|   |   ├── constant.ts
+|   |   ├── validation.ts
+|   |   ├── helper.ts
+|   |   ├── cn.ts
+|   |   ├── type.ts
+|   |   └── index.ts
+|   |
+|   ├── store
+|   |   ├── auth.ts
+|   |   └── index.ts
+|   |
+|   ├── style
+|   |   └── global.css
+|   |
+|   ├── middleware.ts
+|   └── env.ts // optional
+|
+├── .env
+├── .env.dev
+├── .env.preprod
+├── .env.prod
+├── .gitignore
+├── .prettierignore
+├── .prettierrc.cjs
+├── .eslintrc.cjs
+├── next-env.d.ts
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── README.md
+├── tailwind.config.ts
+└── tsconfig.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Commit Message Format
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project enforces [Conventional Commits](https://www.conventionalcommits.org/) specification. This means that all your commit messages must be formatted according to the specification. To help you write commit messages, the project uses [Commitizen](https://github.com/commitizen/cz-cli), an interactive CLI that guides you through the commit process. To use it, run the following command:
 
-## Deploy on Vercel
+```shell
+npm run commit
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Generete base code with plop
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project utilizes Plop to automate the creation of starter code for various components, pages, or features. Plop provides a set of interactive CLI prompts to help you quickly scaffold files according to predefined templates and configurations. This ensures consistency and saves time during development.
+
+To generate starter code, simply run the following command:
+
+```shell
+npm run generate
+```

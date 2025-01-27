@@ -1,0 +1,11 @@
+import React from 'react'; 
+
+interface I{{pascalCase name}}Props<T> { 
+  data: T;
+  name: string; 
+}
+
+export function {{pascalCase name}}<T>(props: I{{pascalCase name}}Props<T>) { 
+  const { name } = props; 
+  return <div>{name}</div>; 
+};
