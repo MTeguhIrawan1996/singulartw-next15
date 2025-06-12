@@ -1,0 +1,4 @@
+export const {{constantCase name}}_KEYS = {
+  root: () => ['{{constantCase name}}'],
+  list: (args?: object) => [...{{constantCase name}}_KEYS.root(), 'LIST', { ...(args || {}) }],
+};

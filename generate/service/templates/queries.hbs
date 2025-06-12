@@ -1,0 +1,51 @@
+import { queryOptions, UndefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
+
+import { {{camelCase name}}Instance } from '@/services/{{kebabCase name}}/instances';
+import { {{constantCase name}}_KEYS } from '@/services/{{kebabCase name}}/keys';
+
+interface I{{pascalCase fileName}}Obj {
+  id: string;
+  status: string;
+  // other obj response
+}
+
+interface I{{pascalCase fileName}}Response {
+  data: I{{pascalCase fileName}}Obj[];
+  // other response
+}
+
+interface I{{pascalCase fileName}}Request {
+  id: string;
+  limit: number;
+  // other request
+}
+
+export interface I{{pascalCase fileName}}Args {
+  options: Partial<UndefinedInitialDataOptions<I{{pascalCase fileName}}Response, Error, I{{pascalCase fileName}}Obj[] | undefined>>;
+  request: Partial<I{{pascalCase fileName}}Request>;
+}
+
+export const {{camelCase fileName}} = async (req: I{{pascalCase fileName}}Args['request']) => {
+  const response = await {{camelCase name}}Instance.get<I{{pascalCase fileName}}Response>(`?limit=${req.limit}`);
+  return response.data;
+};
+
+export const queryOption{{pascalCase fileName}} = (args?: Partial<I{{pascalCase fileName}}Args>) => {
+  const { options, request } = args || {};
+  return queryOptions({
+    queryKey: {{constantCase name}}_KEYS.list({ ...request }),
+    queryFn: () => {{camelCase fileName}}({ ...request }),
+    retry: 0,
+    enabled: !!request?.id,
+    select: ({ data }) => {
+      // Other function extract response api
+      const newData = data?.filter((obj) => obj.status === 'active');
+      return newData;
+    },
+    ...(options || {}),
+  });
+};
+
+export const use{{pascalCase fileName}} = (args?: Partial<I{{pascalCase fileName}}Args>) => {
+  return useQuery(queryOption{{pascalCase fileName}}({ ...args }));
+};

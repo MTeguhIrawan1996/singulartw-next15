@@ -1,0 +1,31 @@
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+
+import { {{camelCase name}}Instance } from '@/services/{{kebabCase name}}/instances';
+
+interface I{{pascalCase fileName}}Variables {
+  name: string;
+  // other variable or payload
+}
+
+interface I{{pascalCase fileName}}Response {
+  id: string;
+  // other response
+}
+
+export interface I{{pascalCase fileName}}Args {
+  mutationOption: UseMutationOptions<I{{pascalCase fileName}}Response, AxiosError, I{{pascalCase fileName}}Variables>;
+  variables: I{{pascalCase fileName}}Variables;
+}
+
+export const {{camelCase fileName}} = async (variables: I{{pascalCase fileName}}Args['variables']) => {
+  const response = await {{camelCase name}}Instance.post<I{{pascalCase fileName}}Response>('', variables);
+  return response.data;
+};
+
+export const use{{pascalCase fileName}} = (mutationOption?: I{{pascalCase fileName}}Args['mutationOption']) => {
+  return useMutation({
+    mutationFn: (variables) => {{camelCase fileName}}(variables),
+    ...(mutationOption || {}),
+  });
+};

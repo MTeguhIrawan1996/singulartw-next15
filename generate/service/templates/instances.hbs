@@ -1,0 +1,12 @@
+import { env } from '@/env';
+import { getAxiosConfig } from '@/services/axiosConfig';
+
+const baseURL = `${env.NEXT_PUBLIC_BASE_URL || ''}`;
+
+export const {{camelCase name}}Instance = getAxiosConfig(baseURL, {
+  isAuth: false,
+  includeDeviceInfo: false,
+  includeXProject: false,
+});
+
+// Other Instance
