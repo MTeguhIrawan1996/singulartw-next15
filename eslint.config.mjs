@@ -57,16 +57,15 @@ const eslintConfig = [
         'warn',
         {
           groups: [
-            // ext library & side effect imports
-            ['^@?\\w', '^\\u0000'],
-            // {s}css files
-            ['^.+\\.s?css$'],
-            // Lib and hooks
-            ['^@/lib', '^@/hooks'],
-            // utils
-            ['^@/utils'],
+            // Side effect imports (e.g., `import './setup'`)
+            ['^\\u0000'],
+            // Packages. `react` related packages first.
+            ['^react', '^@?\\w'],
+            // Lib, utils, and hooks
+            ['^@/lib', '^@/hooks', '^@/utils'],
             // components
-            ['^@/components', '^@/container'],
+            ['^@/components'],
+            ['^@/features'],
             // // zustand store
             ['^@/store'],
             // Other imports
@@ -85,6 +84,8 @@ const eslintConfig = [
             ['^@/types'],
             // other that didnt fit in
             ['^'],
+            // {s}css files
+            ['^.+\\.s?css$'],
           ],
         },
       ],

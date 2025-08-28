@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-require-imports */
+const generateService = require('./generate/service');
 const generateComponent = require('./generate/component');
 const { exec } = require('child_process');
 
 module.exports = function (plop) {
   plop.setGenerator('component', generateComponent);
+  plop.setGenerator('service', generateService);
 
   plop.setActionType('custom-lint', () => {
     return new Promise((resolve, reject) => {
