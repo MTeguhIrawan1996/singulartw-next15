@@ -15,6 +15,7 @@ const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 const eslintConfig = [
   includeIgnoreFile(gitignorePath),
+  // ...tailwind.configs['flat/recommended'],
   ...compat.config({
     plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
     extends: [
@@ -24,7 +25,7 @@ const eslintConfig = [
       'next/core-web-vitals',
       'next/typescript',
       'prettier',
-      'plugin:tailwindcss/recommended',
+      // 'plugin:tailwindcss/recommended',
     ],
     rules: {
       'no-unused-vars': ['error'],
