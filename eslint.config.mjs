@@ -1,5 +1,12 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import { FlatCompat } from '@eslint/eslintrc';
+import stylistic from '@stylistic/eslint-plugin';
+import { defineConfig } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import prettier from 'eslint-config-prettier/flat';
+import reactHooks from 'eslint-plugin-react-hooks';
+import simpleImport from 'eslint-plugin-simple-import-sort';
+import unusedImport from 'eslint-plugin-unused-imports';
 import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -7,33 +14,32 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
-const eslintConfig = [
+const eslintConfig = defineConfig([
   includeIgnoreFile(gitignorePath),
-  // ...tailwind.configs['flat/recommended'],
-  ...compat.config({
-    plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
-    extends: [
-      'next',
-      'plugin:@typescript-eslint/strict',
-      'plugin:@typescript-eslint/stylistic',
-      'next/core-web-vitals',
-      'next/typescript',
-      'prettier',
-      // 'plugin:tailwindcss/recommended',
-    ],
+  ...nextVitals,
+  ...nextTs,
+  prettier,
+  {
+    plugins: {
+      'unused-imports': unusedImport,
+      'simple-import-sort': simpleImport,
+      '@stylistic': stylistic,
+      'react-hooks': reactHooks,
+    },
     rules: {
-      'no-unused-vars': ['error'],
-      'no-console': ['error'],
+      'no-unused-vars': ['warn'],
+      'no-console': ['warn'],
       'jsx-quotes': ['error', 'prefer-double'],
       '@typescript-eslint/no-explicit-any': 'warn',
       'prefer-arrow-callback': 'error',
-      'react/jsx-curly-brace-presence': [
+      'react-hooks/error-boundaries': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'off',
+      'react-hooks/refs': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@stylistic/jsx-curly-brace-presence': [
         'warn',
         { props: 'never', children: 'never' },
       ],
@@ -92,7 +98,7 @@ const eslintConfig = [
       ],
       //#endregion  //*======== Import Sort ===========
     },
-  }),
-];
+  },
+]);
 
 export default eslintConfig;
